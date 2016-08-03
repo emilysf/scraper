@@ -1,0 +1,19 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "description": "news posts that users can comment on.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilysf/scraper.git"
+  },
+  "author": "Emily Frazin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emilysf/scraper/issues"
+  },
+  "homepage": "https://github.com/emilysf/scraper#readme"
+}
