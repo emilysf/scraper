@@ -1,59 +1,49 @@
-<!DOCTYPE html>
 
-<head>
-	<meta charset="UTF-8">
-	<title>Scraper</title>
-
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
-
-	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery.js"></script>
-
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-	<!-- Compressed Bootstrap JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-	<!-- Javascript -->\\
-	<script src="app.js"></script>
-
-
-</head>
-
-<body>
 <div class = 'container'>
+	<h1>Get the Latest News!</h1>
 	<div class = 'row'>
-		<div class = 'col-md-6 col-md-offset-3'>
-			<div class="panel-heading"><h2></h2></div>
-  			<div class="panel-body"><strong></strong></div>
+		<div class = 'col-md-4'>
+			<!-- <div id="comments">
+				<p>Comment:</p>
+				<textarea class="form-control" rows="3" id="comment"></textarea>
+				<br>
+				<button class = 'btn btn-primary' id='addComment'>Submit</button>
+			</div> -->
+
+			<form class="commentForm">
+                <div class="form-group">
+                    <label for="seats">Comment on the Article!</label>
+                    <textarea class="form-control" rows="3" id="commentBox"></textarea>
+                </div>
+
+                <button type="button" class="btn btn-primary" id="addComment">Submit</button>
+            </form>
 		</div>
-	</div>
-
-	<div class = 'row'>
-		<div class = 'col-md-10 col-md-offset-1'>
-			<div class="panel-heading"><h3><strong>Panel heading without title</strong><h3></div>
-  			<div class="panel-body">
-  				<div id='content'></div id='content'>
-  			</div>
-  			<div class="panel-body">
-
+	
+		<div class = 'col-md-4'>
+			
   			{{#each result}}
-  				<p><strong>{{title}}</strong></p>
-  				<a href>{{url}}</a href>
-  				<br>
+  				<h4>{{title}}</h4>
+  				<p>{{content}}</p>
   			{{/each}}
+  			
+  		</div>
 
-  				<div id="comments">
-  					<p>Comment:</p>
-  					<textarea class="form-control" rows="3" id="comment"></textarea>
-  					<br>
-  					<button class = 'btn btn-primary' id = 'addComment'>Submit</button>
-  				</div>
-  			</div>
-		</div>
+  		<div class = 'col-md-4'>
+  			<div id="comments"></div>
+  			{{#each comments}}
+                <p class="comments" data-title="{{title}}">
+                    <button class="delete" data-comment="{{comment}}" data-title="{{title}}">
+                        <span class="glyphicon glyphicon-remove-sign"></span>
+                    </button>
+                    {{comment}}      
+                </p>
+            {{/each}}
+  		</div>
 	</div>
+</div>
 
 </div>
-</body>
+
+
+

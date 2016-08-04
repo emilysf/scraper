@@ -45,11 +45,18 @@ app.get('/', function(req, res) {
     $('h2.lede__title').each(function(i, element){
   		
   		var title = $(this).text();
-  		var url = $(this).attr('href');
+
+		// scrapes and concatinates content p tags from each article adding a space inbetween p tags within an article
+		$('p.lede__kicker').each(function(j, element) {
+			
+		var content = $(this).text();
+		
 
 		result.push({
 			title:title,
-			url:url
+			content:content
+  	    });
+
   	    });
   	   
 	});
@@ -74,9 +81,10 @@ app.get('/', function(req, res) {
 });
 
 app.get('/addComments/:id', function(req, res) {
-  // Remember: when searching by an id, the id needs to be passed in 
-  // as (mongojs.ObjectId(IDYOUWANTTOFIND))
-  db.articles.update({'_id':mongojs.ObjectId(req.params.id)},{$set:{'comment':true}}, function(err, edited){
+
+  var comment = req.body;
+
+  db.articles.update({"title": comment.dataTitle}, {$set: {comments: {comment: comment.comment, title: comment.dataTitle}}}, function(err, edited){
     res.send(edited);
   });
 });
@@ -84,9 +92,10 @@ app.get('/addComments/:id', function(req, res) {
 
 // mark a book as having been read
 app.get('/deleteComments/:id', function(req, res) {
-  // Remember: when searching by an id, the id needs to be passed in 
-  // as (mongojs.ObjectId(IDYOUWANTTOFIND))
-   db.articles.update({'_id':mongojs.ObjectId(req.params.id)},{$set:{'comment':false}}, function(err, edited){
+ 
+	var deleteComment = req.body;
+
+   db.articles.update({"title": comment.dataTitle}, {$pull: {comments: {comment: comment.deleteComment, title: comment.dataTitle}}}, function(err, edited){
     res.send(edited);
   });
 
